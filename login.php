@@ -16,7 +16,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             header("Location: http://localhost/Workshop1/main");
             die();
         } else {
-            echo "Błąd dodawania do bazy";
+            echo "Login lub e-mail juz zajete";
         }
     } else {
         $sql = "SELECT * FROM users WHERE (username = '$username' OR mail='$username')";
@@ -29,6 +29,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             if(password_verify($pass, $hashed_pass)){
                 header("Location: http://localhost/Workshop1/main");
                 die();
+            }else{
+                echo "Błędne dane logowania.";
             }
 
         }
