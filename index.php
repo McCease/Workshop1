@@ -2,10 +2,12 @@
     header('Content-type: text/html; charset=utf-8');
 
     require 'AltoRouter.php';
+    require 'connection.php';
 
     $router = new AltoRouter();
     $router->setBasePath('/Workshop1');
-    $router->map('GET','/', 'main.php');
+    $router->map('GET|POST','/', 'login.php');
+    $router->map('GET|POST','/main', 'main.php');
 
     $match = $router->match();
 
@@ -20,12 +22,18 @@ var_dump($match);
     <body>
         <?php
         require('header.php');
+
         if($match){
             require $match['target'];
         }
         else{
             require('404.php');
         }
-        require('footer.php'); ?>
+
+        require('footer.php');
+
+        $conn->close();
+        $conn = null;
+        ?>
     </body>
 </html>

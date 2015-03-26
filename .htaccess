@@ -1,0 +1,5 @@
+
+RewriteEngine On
+RewriteBase /Workshop1/
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule . /Workshop1/index.php [L]
