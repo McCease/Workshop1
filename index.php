@@ -13,6 +13,8 @@
     $router->map('GET|POST','/users/[*:username]', 'users.php');
     $router->map('GET|POST','/settings/[*:username]', 'settings.php');
     $router->map('GET|POST','/logout', 'logout.php');
+    $router->map('GET|POST','/send_message_to/[*:username]', 'sending.php');
+    $router->map('GET|POST','/posts/[i:post_id]', 'post.php');
 
     $match = $router->match();
     session_start();
@@ -25,10 +27,20 @@
     </head>
     <body>
         <?php
-            require('header.php');
+
 
         if($match){
-            require $match['target'];
+            require('header.php');
+            if($match['target']!='login.php'){
+                if($_SESSION["id"]){
+                    require $match['target'];
+                }else{
+                    header("Location: http://localhost/Workshop1/");
+                }
+            }else {
+                require $match['target'];
+            }
+
         }
         else{
             require('404.php');

@@ -26,6 +26,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     </fieldset>
     <button type="submit">Opublikuj</button>
 </form>
+
+<script>
+    function checkPost(form) {
+        if (form.text.value == "") {
+            alert("Wiadomość jest pusta!");
+            form.text.focus();
+            return false;
+        }
+    }
+</script>
 <?php
 
 $sql = "SELECT * FROM posts WHERE user_id=" . $_SESSION["id"];
@@ -36,4 +46,14 @@ $result = $conn->query($sql);
             echo '<li>'. $row["text"] .'</li>';
         };
         echo "</ul>";
+}
+
+$sql = "SELECT username, text, posts.id FROM users JOIN friends ON friends.user_id2=users.id JOIN posts ON friends.user_id2=posts.user_id WHERE user_id1=" . $_SESSION["id"];
+$result = $conn->query($sql);
+if ($result->num_rows > 0) {
+    echo"<ul>";
+    while($row = $result->fetch_assoc()){
+        echo "<li><h4><a href='/Workshop1/users/{$row["username"]}'> {$row["username"]}</a></h4><a href='/Workshop1/posts/{$row["id"]}'>{$row["text"]}</a></li>";
+    };
+    echo "</ul>";
 }

@@ -1,6 +1,3 @@
-<h1> NAGLOWEK GORNY </h1>
-
-
 <?php
 if(sizeof($_SESSION)>0){
     echo '<h2> Czesc <a href="/Workshop1/users/'. $_SESSION["username"] . '">'. $_SESSION["username"] . '</a></h2>
