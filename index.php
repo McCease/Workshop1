@@ -12,6 +12,7 @@
     $router->map('GET|POST','/friends', 'friends.php');
     $router->map('GET|POST','/users/[*:username]', 'users.php');
     $router->map('GET|POST','/settings/[*:username]', 'settings.php');
+    $router->map('GET|POST','/logout', 'logout.php');
 
     $match = $router->match();
     session_start();

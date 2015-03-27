@@ -43,7 +43,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         $row = $result->fetch_assoc();
         $hashed_pass = $row['password'];
-
         if(password_verify($pass, $hashed_pass)){
 
             if($new_pass!='') {
