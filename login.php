@@ -13,7 +13,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         $sql = "INSERT INTO users (username, mail, name, surname, password) VALUES ('$username', '$email', '$name', '$surname', '$hashedPass')";
         if($result = $conn->query($sql)){
+
+            $_SESSION["username"] = $username;
+            $_SESSION["id"] = mysqli_insert_id($conn);
             header("Location: http://localhost/Workshop1/main");
+
             die();
         } else {
             echo "Login lub e-mail juz zajete";
@@ -27,7 +31,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $hashed_pass = $row['password'];
 
             if(password_verify($pass, $hashed_pass)){
+
+                $_SESSION["username"] = $row['username'];
+                $_SESSION["id"] = $row['id'];
                 header("Location: http://localhost/Workshop1/main");
+
                 die();
             }else{
                 echo "Błędne dane logowania.";

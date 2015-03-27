@@ -8,10 +8,13 @@
     $router->setBasePath('/Workshop1');
     $router->map('GET|POST','/', 'login.php');
     $router->map('GET|POST','/main', 'main.php');
+    $router->map('GET|POST','/messages', 'messages.php');
+    $router->map('GET|POST','/friends', 'friends.php');
+    $router->map('GET|POST','/users/[*:username]', 'users.php');
+    $router->map('GET|POST','/settings/[*:username]', 'settings.php');
 
     $match = $router->match();
-
-var_dump($match);
+    session_start();
 ?>
 
 <!doctype html>
@@ -21,7 +24,7 @@ var_dump($match);
     </head>
     <body>
         <?php
-        require('header.php');
+            require('header.php');
 
         if($match){
             require $match['target'];
