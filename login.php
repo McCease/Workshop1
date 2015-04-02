@@ -83,31 +83,35 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     </script>
 
-<form name="registration" method="post" action="" onsubmit="return checkForm(this);">
-    <fieldset>
-        <input type="email" value="" name="email" required placeholder="Adres e-mail"><br>
-        <input type="text" value="" name="username" required placeholder="Nazwa użytkownika"><br>
-        <input type="password" value="" name="password1" required placeholder="Hasło"><br>
-        <input type="password" value="" name="password2" required placeholder="Powtórz hasło"><br>
-        <input type="text" value="" name="name" placeholder="Imię"><br>
-        <input type="text" value="" name="surname" placeholder="Nazwisko"><br>
-    </fieldset>
-    <button type="submit">Zarejestruj</button>
-</form>
+<div class="container">
+    <div class="row">
+        <div class="col">
 
-<br>
-<br>
-<br>
+            <form class="form-signin" name="registration" method="post" action="" onsubmit="return checkForm(this);">
 
-<form name="login" method="post" action="">
-    <fieldset>
-        <input type="text" value="" name="username" required placeholder="Podaj adres e-mail lub nazwę użytkownika"><br>
-        <input type="password" value="" name="password1" required placeholder="Hasło"><br>
-    </fieldset>
-    <button type="submit">Zaloguj</button>
-</form>
+                    <input type="email" value="" name="email" required placeholder="Adres e-mail"><br>
+                    <input type="text" value="" name="username" required placeholder="Nazwa użytkownika"><br>
+                    <input type="password" value="" name="password1" required placeholder="Hasło"><br>
+                    <input type="password" value="" name="password2" required placeholder="Powtórz hasło"><br>
+                    <input type="text" value="" name="name" placeholder="Imię"><br>
+                    <input type="text" value="" name="surname" placeholder="Nazwisko"><br>
 
+                <button type="submit">Zarejestruj</button>
+            </form>
 
+        </div>
+        <div class="col">
 
+            <form class="form-signin" name="login" method="post" action="">
 
-<?php
+                    <input class='form-control' type="text" value="" name="username" required placeholder="Podaj adres e-mail lub nazwę użytkownika"><br>
+                    <input class='form-control' type="password" value="" name="password1" required placeholder="Hasło"><br>
+
+                <button class="btn btn-lg btn-primary btn-block" type="submit">Zaloguj</button>
+            </form>
+
+        </div>
+    </div>
+    <br>
+</div>
+

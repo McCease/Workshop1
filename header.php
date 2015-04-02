@@ -1,8 +1,9 @@
 <?php
 if(sizeof($_SESSION)>0){
-    echo '<h2> Czesc <a href="/Workshop1/users/'. $_SESSION["username"] . '">'. $_SESSION["username"] . '</a></h2>
+    echo '<nav class="navbar-fixed-top"><div class="container"><br>
+            <h3> Czesc <a href="/Workshop1/users/'. $_SESSION["username"] . '">'. $_SESSION["username"] . '</a></h3>
             <span>
-                <a href="/Workshop1/main">Główna</a>
+                <a href="/Workshop1/main"><span class="glyphicon glyphicon-home" aria-hidden="true"></span></a>
             </span>
             <span>
                 <a href="/Workshop1/messages">Wiadomosci</a>
@@ -15,7 +16,14 @@ if(sizeof($_SESSION)>0){
             </span>
             <span>
                 <a href="/Workshop1/logout">Wyloguj</a>
-            </span>';
+            </span>
+           </div></nav>';
 } else{
-    echo "Jesteś niezalogowany, prosimy zrób to poniżej. Jeżeli jeszcze nie masz konta, zapraszamy do rejestracji.";
+    echo '<nav class="navbar-fixed-top">
+            <div class="container">
+            Jesteś niezalogowany, prosimy zrób to poniżej. Jeżeli jeszcze nie masz konta, zapraszamy do rejestracji.
+            </div>
+            </nav>';
 }
+
+

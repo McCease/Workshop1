@@ -24,8 +24,10 @@
 <html>
     <head>
         <title>20</title>
+        <link href="main.css" rel="stylesheet">
     </head>
     <body>
+
         <?php
 
 
@@ -51,5 +53,6 @@
         $conn->close();
         $conn = null;
         ?>
+
     </body>
 </html>
