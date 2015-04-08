@@ -43,7 +43,7 @@
                     header("Location: http://localhost/Workshop1/");
                 }
             }else {
-                if($_SESSION["id"]){
+                if(sizeof($_SESSION)>1 && $_SESSION["id"]){
                     header("Location: http://localhost/Workshop1/main");
                 } else{
                     require $match['target'];
