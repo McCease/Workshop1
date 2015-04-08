@@ -1,12 +1,15 @@
 
 <h1>Zmiana ustawien</h1><br>
 <script>
+    //Sprawdzenie hasła - minimum 6 znaków w tym jedna cyfra i jedna wielka litera
+
     function checkPassword(str)
     {
         var re = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])\w{6,}$/;
         return re.test(str);
     }
 
+    //Sprawdzenie czy hasło jest podane, i czy podane hasła są ze sobą zgodne
     function checkForm(form) {
         if (form.password1.value != '' && form.password2.value != '') {
             if (form.password1.value != "" && form.password1.value == form.password2.value) {
@@ -30,6 +33,7 @@
 
 $params=$match["params"];
 $username=$params["username"];
+//Zmiana ustawień użytkownika na serwerze
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
@@ -46,6 +50,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if(password_verify($pass, $hashed_pass)){
 
             if($new_pass!='') {
+                //Zmiana danych i hasła
                 $options = ['cost' => 11, 'salt' => mcrypt_create_iv(22, MCRYPT_RAND),];
                 $hashedPass = password_hash($new_pass, PASSWORD_BCRYPT, $options);
 
@@ -55,7 +60,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 echo "Dane i hasło poprawnie zmienione";
                 die();
             }else {
-                echo"111";
+                //Zmiana tylko danych
                 $sql = "UPDATE users SET name='$name', surname='$surname' WHERE (username = '$username')";
                 $result = $conn->query($sql);
                 echo "Dane poprawnie zmienione";
@@ -70,7 +75,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 }
 
 
-
+//Pobieranie danych uzytkownika
 
 if($username===$_SESSION["username"]) {
     $sql = "SELECT * FROM users WHERE username='$username'";

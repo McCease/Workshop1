@@ -1,7 +1,7 @@
 
 <?php
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-
+        //Rejestracja - założenie nowego konta - dodanie parametrów nowego konta do obecnej sesji
     $username = $conn->real_escape_string($_POST["username"]);
     $pass = $conn->real_escape_string($_POST["password1"]);
     if(sizeof($_POST)>2){
@@ -23,6 +23,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             echo "Login lub e-mail juz zajete";
         }
     } else {
+        //Logowanie wraz z pobraniem parametrow konta do obecnej sesji
         $sql = "SELECT * FROM users WHERE (username = '$username' OR mail='$username')";
         $result = $conn->query($sql);
         if ($result->num_rows > 0) {
@@ -48,12 +49,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 
 <script>
+        //testowanie hasłą - 6 znaków duża litera i cyfra
         function checkPassword(str)
         {
             var re = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])\w{6,}$/;
             return re.test(str);
         }
-
+        //test formularza - uzupełnienie pól, właściweość wprowadzenia danych
         function checkForm(form)
         {
             if(form.username.value == "") {

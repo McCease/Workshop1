@@ -2,6 +2,7 @@
 <h1>Profil użytkownika</h1><br>
 
 <?php
+//Wyswietlanie damych uzytkownika
 $params=$match["params"];
 $username=$params["username"];
 $sql = "SELECT * FROM users WHERE username='$username'";
@@ -16,6 +17,7 @@ if ($result->num_rows > 0) {
     echo "Nazwisko: " . $row['surname'] . "<br>";
 
     if($user2!=$_SESSION["id"]){
+        //Jezeli to inny uzytkownik - mozliwosc zaprzyjarznienia (chyba ze juz jest sie znajomymi)
         echo "<a href='/Workshop1/send_message_to/$username2'><br><button>Wyslij wiadomosc</button></a>";
 
         $sql = "SELECT * FROM friends WHERE user_id1='{$_SESSION["id"]}' AND user_id2='$user2'";
@@ -30,7 +32,7 @@ if ($result->num_rows > 0) {
 } else {
     echo"<h2>Nie ma takiego użytkownika</h2>";
 }
-
+//Utworzenie przyjazni
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $user1=$_SESSION["id"];
     $sql = "INSERT INTO friends (user_id1 , user_id2) VALUES ($user1 , $user2), ($user2 , $user1)";
@@ -42,7 +44,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         die();
     };
 }
-
+//Posty użytkownika od tego profilu
 $sql = "SELECT * FROM posts JOIN users ON users.id=posts.user_id WHERE users.username='$username'";
 $result = $conn->query($sql);
 if ($result->num_rows > 0) {

@@ -1,7 +1,7 @@
 <?php
 $params=$match["params"];
 $username=$params["username"];
-
+//Wysyłanie wiadomości
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $user1 = $_SESSION["id"];
     $text = $conn->real_escape_string($_POST["text"]);
@@ -26,6 +26,7 @@ echo "<input type='text' name='text' value=''><br>";
 echo "<button type='submit'>Wyślij wiadomość</button>";
 ?>
 <script>
+    //Upewnienie czy wiadomość ma treść
 function checkMsg(form) {
     if (form.text.value == "") {
         alert("Wiadomość jest pusta!");

@@ -1,9 +1,7 @@
 <?php
-
-
-
-
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
+
+    //Dodawanie komentarza do postu
     $user1 = $_SESSION["id"];
     $text = $conn->real_escape_string($_POST["text"]);
 
@@ -16,7 +14,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 
 
-
+    //Pobranie posta
 $sql = "SELECT username, text FROM users JOIN posts ON posts.user_id=users.id WHERE posts.id={$match["params"]["post_id"]}";
 $result = $conn->query($sql);
 if ($result->num_rows > 0) {
@@ -32,7 +30,7 @@ if ($result->num_rows > 0) {
 
 
     echo"<h3>Komentarze:</h3><br>";
-
+    //Pobieranie komentarzy
     $sql = "SELECT username, text FROM comments JOIN users ON comments.user_id=users.id WHERE comments.post_id={$match["params"]["post_id"]} ORDER BY comments.id DESC";
     $result = $conn->query($sql);
         if ($result->num_rows > 0) {
@@ -51,6 +49,7 @@ if ($result->num_rows > 0) {
 
 ?>
 <script>
+    //Sprawdzanie czy komentarz ma treść
     function checkComment(form) {
         if (form.text.value == "") {
             alert("Komentarz jest pusty!");

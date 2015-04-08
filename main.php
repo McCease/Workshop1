@@ -1,6 +1,6 @@
 <?php
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-
+    //Dodawanie nowych wpisów
     $text = $conn->real_escape_string($_POST["text"]);
     $is_private = $conn->real_escape_string($_POST["is_private"]);
 
@@ -28,6 +28,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </form>
 
 <script>
+    //sprawdzenie czy post ma jakąkolwiek treść
     function checkPost(form) {
         if (form.text.value == "") {
             alert("Wiadomość jest pusta!");
@@ -37,7 +38,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 </script>
 <?php
-
+    //Wyświetlanie postów obecnie zalogowanego usera
 $sql = "SELECT * FROM posts WHERE user_id=" . $_SESSION["id"];
 $result = $conn->query($sql);
     if ($result->num_rows > 0) {
@@ -47,7 +48,7 @@ $result = $conn->query($sql);
         };
         echo "</ul>";
 }
-
+    //Posty znajomych obecnie zalogowanego usera
 $sql = "SELECT username, text, posts.id FROM users JOIN friends ON friends.user_id2=users.id JOIN posts ON friends.user_id2=posts.user_id WHERE user_id1=" . $_SESSION["id"];
 $result = $conn->query($sql);
 if ($result->num_rows > 0) {

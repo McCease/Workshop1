@@ -3,7 +3,7 @@
 
     require 'AltoRouter.php';
     require 'connection.php';
-
+//przekierowania
     $router = new AltoRouter();
     $router->setBasePath('/Workshop1');
     $router->map('GET|POST','/', 'login.php');
@@ -30,7 +30,10 @@
 
         <?php
 
-
+/* Sprawdzanie stanu logowania:
+    niezalogowany - na strone logowania
+    zalogowany - na dowolną inną niż strona logowania
+*/
         if($match){
             require('header.php');
             if($match['target']!='login.php'){
@@ -40,9 +43,12 @@
                     header("Location: http://localhost/Workshop1/");
                 }
             }else {
-                require $match['target'];
+                if($_SESSION["id"]){
+                    header("Location: http://localhost/Workshop1/main");
+                } else{
+                    require $match['target'];
+                }
             }
-
         }
         else{
             require('404.php');
