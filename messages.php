@@ -3,7 +3,7 @@ echo"<h2>INBOX</h2><ul>";
 
 //Pobieranie wiadomości przychodzących
 
-$sql = "SELECT messages.id, username, user_from, user_to, text, is_read  FROM messages JOIN users on messages.user_from=users.id WHERE user_to={$_SESSION["id"]} ORDER BY is_read";
+$sql = "SELECT messages.id, username, user_from, user_to, topic, is_read  FROM messages JOIN users on messages.user_from=users.id WHERE user_to={$_SESSION["id"]} ORDER BY is_read";
 $result = $conn->query($sql);
 
 
@@ -13,7 +13,7 @@ if ($result->num_rows > 0) {
             echo"Nieprzeczytana!<br>";
         }
         $usrn=$row['username'];
-        echo "<li><h4>Od $usrn</h4>{$row['text']} <a href='/Workshop1/send_message_to/$usrn'><br><button>Odpowiedz</button></a></li>";
+        echo "<li><h4>Od $usrn</h4><h2><a href='/Workshop1/single_msg/id>{$row['topic']}</a></h2> <a href='/Workshop1/send_message_to/$usrn'><br><button>Odpowiedz</button></a></li>";
     };
 
 }else{
@@ -25,7 +25,7 @@ echo"<h2>OUTBOX</h2><ul>";
 
 //Pobieranie wiadomości wychodzących
 
-$sql = "SELECT messages.id, username, user_from, user_to, text, is_read FROM messages JOIN users on messages.user_to=users.id WHERE user_from={$_SESSION["id"]} ORDER BY is_read";
+$sql = "SELECT messages.id, username, user_from, user_to, topic, text, is_read FROM messages JOIN users on messages.user_to=users.id WHERE user_from={$_SESSION["id"]} ORDER BY is_read";
 $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
@@ -34,7 +34,7 @@ if ($result->num_rows > 0) {
         if($row['is_read']==='0'){
             echo"Nieprzeczytana!<br>";
         }
-        echo "<li><h4>Do {$row['username']}</h4>{$row['text']}</li>";
+        echo "<li><h4>Do {$row['username']}</h4><h2>{$row['topic']}</h2>{$row['text']}</li>";
 
     };
 

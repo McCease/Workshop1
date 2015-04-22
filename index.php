@@ -24,7 +24,7 @@
 <html>
     <head>
         <title>20</title>
-        <link href="main.css" rel="stylesheet">
+        <link href="../../Workshop1/main.css" rel="stylesheet">
     </head>
     <body>
 
